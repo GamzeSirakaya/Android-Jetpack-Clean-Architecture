@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.viewmodel2.databinding.ActivityMainBinding
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 
 class MainActivity : AppCompatActivity() {
@@ -16,10 +17,12 @@ class MainActivity : AppCompatActivity() {
         binding=DataBindingUtil.setContentView(this,R.layout.activity_main)
         viewModelFactory=MainActivityViewModelFactory(125)
         viewModel=ViewModelProvider(this,viewModelFactory).get(MainActivityViewModel::class.java)
-        binding.textView.text=viewModel.getTotal().toString()
+        viewModel.totalData.observe(this, Observer {
+            binding.textView.text=it.toString()
+
+        })
         binding.button.setOnClickListener {
             viewModel.setTotal(binding.editTextTextPersonName.text.toString().toInt())
-            binding.textView.text=viewModel.getTotal().toString()
         }
 
     }
