@@ -2,7 +2,11 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-
+<data>
+    <variable
+        name="myViewModel"
+        type="com.example.viewmodel2.MainActivityViewModel" />
+</data>
 
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
@@ -16,6 +20,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
         android:ems="10"
+        android:text="@={myViewModel.inputText}"
         android:hint="please enter number "
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.552"
@@ -28,6 +33,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="76dp"
         android:text="ADD"
+        android:onClick="@{()->myViewModel.setTotal()}"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.526"
         app:layout_constraintStart_toStartOf="parent"
@@ -40,6 +46,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="84dp"
         android:textSize="50sp"
+        android:text="@{String.valueOf(myViewModel.totalData)}"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.535"
         app:layout_constraintStart_toStartOf="parent"
